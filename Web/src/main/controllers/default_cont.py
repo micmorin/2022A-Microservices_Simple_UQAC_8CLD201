@@ -8,13 +8,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import check_password_hash
 
 def index():
-    if current_user.is_authenticated:
-        objects = Object.query.all()
-        users = User.query.all()
-        profils = Profil.query.all()
-        return render_template('index.html', objects=objects, users=users, profils=profils)
-    else:
-        return redirect(url_for('default.login'))
+    return render_template('index.html')
 
 def login():
     form = LoginForm()

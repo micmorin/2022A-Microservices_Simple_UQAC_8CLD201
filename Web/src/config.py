@@ -13,6 +13,8 @@ class ProdConfig(Config):
     FLASK_ENV = 'production'
     DEBUG = False
     TESTING = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///storage.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class DevConfig(Config):
     FLASK_ENV = 'development'

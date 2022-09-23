@@ -14,64 +14,45 @@
 
 <div class="row">
     <div class="col">
-        <h1 class="mt-5 text-center">Déploiement d’une infrastructure IoT minimale sur le cloud</h1>
+        <h1 class="mt-5 text-center">Déploiement d’une calculatrice sur le cloud</h1>
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
-        <h3 class="mt-5">Objets</h3>
-    </div>
-    {% if current_user.is_authenticated and current_user.profil.description == "admin"%}
-    <div class="col text-end">
-        <a class="btn btn-primary mt-5" href="{{url_for('objects.create')}}"> Créer un nouvel Objet</a>
-    </div>
-    {% endif %}
-</div>
-
-<table class="table table-striped">
-  <thead>
+<table class="calculator" >
     <tr>
-      <th scope="col" style="width:10%">#</th>
-      <th scope="col" style="width:25%">Nom</th>
-      <th scope="col" style="width:10%">SetUp</th>
-      <th scope="col" style="width:10%">Upload</th>
-      <th scope="col" style="width:10%">Active</th>
-      <th scope="col" style="width:10%">Utilisateur</th>
-      <th scope="col" style="width:25%">Action</th>
+      <td colspan="3"> <input class="display-box" type="text" id="result" disabled /> </td>
+   
+      <!-- clearScreen() function clears all the values -->
+      <td> <input type="button" value="C" onclick="clearScreen()" id="btn" /> </td>
     </tr>
-  </thead>
-  <tbody>
-      {% for object in objects %}
-      <tr>
-          <th scope="row">{{object.id}}</th>
-          <td class="lead">{{object.name}}</td>
-          <td class="lead">{{object.setup_date}}</td>
-          <td class="lead">{{object.upload_date}}</td>
-          <td class="lead">{% if object.status%} Actif {%else%} Inactif {%endif%}</td>
-          <td class="lead">{{object.user.name}}</td>
-          <td>
-              <form action="{{url_for('objects.destroy', object_id = object.id)}}" 
-                    method="POST">
-
-                  <a href="{{url_for('objects.show', object_id = object.id)}}"
-                      class="btn btn-outline-success"
-                      role="button">
-                          Voir
-                  </a>
-                  {% if current_user.is_authenticated and current_user.profil.description == "admin" %}
-                  <a href="{{url_for('objects.update', object_id = object.id)}}"
-                      class="btn btn-outline-primary"
-                      role="button">
-                          Changer
-                  </a>
-                  <button type="submit" class="btn btn-outline-danger">Supprimer</button>
-                  {% endif %}
-              </form>
-
-          </td>
-      </tr>
-      {% endfor %}
-  </tbody>
-</table>
+    <tr>
+      <!-- display() function displays the value of clicked button -->
+      <td> <input type="button" value="1" onclick="display('1')" /> </td>
+      <td> <input type="button" value="2" onclick="display('2')" /> </td>
+      <td> <input type="button" value="3" onclick="display('3')" /> </td>
+      <td> <input type="button" value="/" onclick="display('/')" /> </td>
+    </tr>
+    <tr>
+      <td> <input type="button" value="4" onclick="display('4')" /> </td>
+      <td> <input type="button" value="5" onclick="display('5')" /> </td>
+      <td> <input type="button" value="6" onclick="display('6')" /> </td>
+      <td> <input type="button" value="-" onclick="display('-')" /> </td>
+    </tr>
+    <tr>
+      <td> <input type="button" value="7" onclick="display('7')" /> </td>
+      <td> <input type="button" value="8" onclick="display('8')" /> </td>
+      <td> <input type="button" value="9" onclick="display('9')" /> </td>
+      <td> <input type="button" value="+" onclick="display('+')" /> </td>
+    </tr>
+    <tr>
+      <td> <input type="button" value="." onclick="display('.')" /> </td>
+      <td> <input type="button" value="0" onclick="display('0')" /> </td>
+   
+      <!-- calculate() function evaluates the mathematical expression -->
+      <td> <input type="button" value="=" onclick="calculate()" id="btn" /> </td>
+      <td> <input type="button" value="*" onclick="display('*')" /> </td>
+    </tr>
+  </table>
+   
+  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}
