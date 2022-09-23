@@ -14,64 +14,41 @@
 
 <div class="row">
     <div class="col">
-        <h1 class="mt-5 text-center">Déploiement d’une infrastructure IoT minimale sur le cloud</h1>
+        <h1 class="mt-5 text-center">Déploiement d’une calculatrice sur le cloud</h1>
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
-        <h3 class="mt-5">Objets</h3>
+<div class="container">
+    <div class="header">Calculatrice</div>
+    <input type="text" class="result">
+    <div class="first-row">
+      <input type="button" name="" value="7" class="global">
+      <input type="button" name="" value="8" class="global">
+      <input type="button" name="" value="9" class="global">
+      <input type="button" name="" value="/" class="global">
     </div>
-    {% if current_user.is_authenticated and current_user.profil.description == "admin"%}
-    <div class="col text-end">
-        <a class="btn btn-primary mt-5" href="{{url_for('objects.create')}}"> Créer un nouvel Objet</a>
+    <div class="second-row">
+      <input type="button" name="" value="4" class="global">
+      <input type="button" name="" value="5" class="global">
+      <input type="button" name="" value="6" class="global">
+      <input type="button" name="" value="X" class="global">
     </div>
-    {% endif %}
-</div>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col" style="width:10%">#</th>
-      <th scope="col" style="width:25%">Nom</th>
-      <th scope="col" style="width:10%">SetUp</th>
-      <th scope="col" style="width:10%">Upload</th>
-      <th scope="col" style="width:10%">Active</th>
-      <th scope="col" style="width:10%">Utilisateur</th>
-      <th scope="col" style="width:25%">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-      {% for object in objects %}
-      <tr>
-          <th scope="row">{{object.id}}</th>
-          <td class="lead">{{object.name}}</td>
-          <td class="lead">{{object.setup_date}}</td>
-          <td class="lead">{{object.upload_date}}</td>
-          <td class="lead">{% if object.status%} Actif {%else%} Inactif {%endif%}</td>
-          <td class="lead">{{object.user.name}}</td>
-          <td>
-              <form action="{{url_for('objects.destroy', object_id = object.id)}}" 
-                    method="POST">
-
-                  <a href="{{url_for('objects.show', object_id = object.id)}}"
-                      class="btn btn-outline-success"
-                      role="button">
-                          Voir
-                  </a>
-                  {% if current_user.is_authenticated and current_user.profil.description == "admin" %}
-                  <a href="{{url_for('objects.update', object_id = object.id)}}"
-                      class="btn btn-outline-primary"
-                      role="button">
-                          Changer
-                  </a>
-                  <button type="submit" class="btn btn-outline-danger">Supprimer</button>
-                  {% endif %}
-              </form>
-
-          </td>
-      </tr>
-      {% endfor %}
-  </tbody>
-</table>
+    <div class="third-row">
+      <input type="button" name="" value="1" class="global">
+      <input type="button" name="" value="2" class="global">
+      <input type="button" name="" value="3" class="global">
+      <input type="button" name="" value="-" class="global">
+    </div>
+    <div class="conflict">
+      <div class="left">
+        <input type="button" name="" value="0" class=" big">
+        <input type="button" name="" value="." class=" small">
+        <input type="button" name="" value="Del" class=" red small white-text top-margin">
+        <input type="button" name="" value="=" class=" green white-text big top-margin">
+      </div>
+      <div class="right">
+        <input type="button" name="" value="+" class="global grey plus">
+      </div>
+    </div>
+  </div>
 {% endblock %}
