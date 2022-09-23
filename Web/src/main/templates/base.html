@@ -47,7 +47,9 @@
                     </ul>
                     {% else %}
                     <ul class="navbar-nav mr-auto me-5 ms-2 mb-md-0">
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('users.create') }}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('default.login') }}">Log In</a></li>
+                        
                             </ul>
                         </li>
                     </ul>

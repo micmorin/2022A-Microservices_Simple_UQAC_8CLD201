@@ -12,7 +12,6 @@ def index():
     profils = Profil.query.all()
     return render_template('user_list.html', users=users, profils=profils)
 
-@login_required
 def create():
     return render_template('user_create.html', form=RegisterForm())
 
