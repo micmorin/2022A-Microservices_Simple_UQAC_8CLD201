@@ -25,10 +25,10 @@ if __name__ == "__main__":
         print('Ajouter des utilisateurs...')
         admin = User(
             name="admin_nom", username='admin', email='admin@example.com', 
-            password=generate_password_hash("admin"), profil=prof1)
+            password=generate_password_hash("admin"), token=generate_password_hash("admin"), profil=prof1)
         guest = User(
             name="user_nom",username='user', email='guest@example.com', 
-            password=generate_password_hash("user"), profil=prof2)
+            password=generate_password_hash("user"), token=generate_password_hash("user"), profil=prof2)
 
 
         db.session.add(admin)
