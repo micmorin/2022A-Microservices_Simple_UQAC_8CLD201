@@ -1,7 +1,7 @@
 from queue import Empty
 from main.models.md_profil import Profil
 from main.models.md_user import User
-from flask import render_template, request, redirect, url_for, flash, jsonify
+from flask import  request, jsonify
 from main.app_init.database import db
 
 def prof_array(message):
