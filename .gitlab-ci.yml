@@ -4,6 +4,5 @@ build image:
     - docker:dind
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER"  "$CI_REGISTRY" --password-stdin
-    - docker build -t micmunger/8cld201 ./Web
-    - docker tag web-latest micmunger/8cld201
+    - docker build -t micmunger/8cld201:web ./Web
     - docker push micmunger/8cld201
