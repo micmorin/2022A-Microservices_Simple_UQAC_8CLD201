@@ -5,10 +5,10 @@ services:
     image: ${CI_REGISTRY_IMAGE}/web
     build:
       context: ./Web
-      dockerfile: Web/Dockerfile
+      dockerfile: Dockerfile
 
   db:
     image: ${CI_REGISTRY_IMAGE}/db
     build:
       context: ./DB
-      dockerfile: DB/Dockerfile
+      dockerfile: Dockerfile
