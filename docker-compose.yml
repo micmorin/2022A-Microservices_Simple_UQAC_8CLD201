@@ -2,13 +2,13 @@ version: '1.0'
 
 services:
   web:
-    image: ${CI_REGISTRY_IMAGE}/web
+    image: ${CI_REGISTRY_IMAGE}/web:web-v1.0.0
     build:
       context: ./Web
       dockerfile: Dockerfile
 
   db:
-    image: ${CI_REGISTRY_IMAGE}/db
+    image: ${CI_REGISTRY_IMAGE}/db:db-v1.0.0
     build:
       context: ./DB
       dockerfile: Dockerfile
