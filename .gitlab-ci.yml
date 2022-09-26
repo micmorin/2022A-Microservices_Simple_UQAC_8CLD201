@@ -7,7 +7,7 @@ build image:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t micmunger/8cld201:web ./Web
-    - docker tag micmunger/8cld201:web:latest micmunger/8cld201:web
+    - docker tag micmunger/8cld201:web micmunger/8cld201:web
     - docker push micmunger/8cld201:web
     - docker build --pull -t micmunger/8cld201:db ./DB
     - docker push micmunger/8cld201:db
