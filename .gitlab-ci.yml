@@ -1,7 +1,11 @@
+
+
 build image:
   image: docker
   services:
     - docker:dind
+  variables:
+    CI_REGISTRY_IMAGE: "micmunger/cld201"
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER  $CI_REGISTRY --password-stdin
     - apk add --no-cache docker-compose
