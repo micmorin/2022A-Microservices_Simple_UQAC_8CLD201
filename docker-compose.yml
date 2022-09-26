@@ -1,0 +1,14 @@
+version: '1.0'
+
+services:
+  web:
+    image: ${CI_REGISTRY_IMAGE}/web
+    build:
+      context: .
+      dockerfile: Web/Dockerfile
+
+  db:
+    image: ${CI_REGISTRY_IMAGE}/db
+    build:
+      context: .
+      dockerfile: DB/Dockerfile
