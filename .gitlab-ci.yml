@@ -2,9 +2,8 @@ build image:
   image: docker
   services:
     - docker:dind
-  script:
+  before_script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER  $CI_REGISTRY --password-stdin
-    - docker build -t $CI_REGISTRY_IMAGE ./Web
-    - docker push $CI_REGISTRY_IMAGE:web-latest
-    - docker build -t $CI_REGISTRY_IMAGE ./DB
-    - docker push $CI_REGISTRY_IMAGE:db-latest
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" ./Web
+    - docker push "$CI_REGISTRY_IMAGE:web-latest"
