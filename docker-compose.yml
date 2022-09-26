@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
 
   db:
-    image: ${CI_REGISTRY_IMAGE}/db:db-v1.0.0
+    image: ${CI_REGISTRY_IMAGE}:db-v1.0.0
     build:
       context: ./DB
       dockerfile: Dockerfile
