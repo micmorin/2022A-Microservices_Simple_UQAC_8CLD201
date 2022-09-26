@@ -7,4 +7,4 @@ build image:
     - apk add --no-cache docker-compose
     - docker-compose build
     - docker push $CI_REGISTRY_IMAGE/web
-    - docker push $CI_REGISTRY_IMAGE/wdb
+    - docker push $CI_REGISTRY_IMAGE/db
