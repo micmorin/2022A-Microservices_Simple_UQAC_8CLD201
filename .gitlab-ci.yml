@@ -5,4 +5,6 @@ build image:
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER"  "$CI_REGISTRY" --password-stdin
     - docker build --pull -t micmunger/8cld201:web ./Web
-    - docker push micmunger/8cld201
+    - docker push micmunger/8cld201:web
+    - docker build --pull -t micmunger/8cld201:db ./DB
+    - docker push micmunger/8cld201:db
