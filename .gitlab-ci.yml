@@ -8,6 +8,6 @@ build image:
   script:
     - docker build --pull -t micmunger/8cld201:web ./Web
     - docker tag micmunger/8cld201:web micmunger/8cld201:web
-    - docker push micmunger/8cld201:web
+    - docker push micmunger/8cld201
     - docker build --pull -t micmunger/8cld201:db ./DB
     - docker push micmunger/8cld201:db
