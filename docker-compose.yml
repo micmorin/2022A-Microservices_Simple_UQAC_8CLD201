@@ -4,11 +4,11 @@ services:
   web:
     image: ${CI_REGISTRY_IMAGE}/web
     build:
-      context: .
+      context: ./Web
       dockerfile: Web/Dockerfile
 
   db:
     image: ${CI_REGISTRY_IMAGE}/db
     build:
-      context: .
+      context: ./DB
       dockerfile: DB/Dockerfile
