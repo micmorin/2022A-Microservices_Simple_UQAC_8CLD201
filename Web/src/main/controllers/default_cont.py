@@ -1,5 +1,4 @@
 import flask
-from main.models.md_object import Object
 from main.models.md_user import User
 from main.models.md_profil import Profil
 from main.models.form_login import LoginForm

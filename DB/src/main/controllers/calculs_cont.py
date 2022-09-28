@@ -1,8 +1,7 @@
 from queue import Empty
 from unicodedata import ucd_3_2_0
-from DB.src.main.models.md_calcul import Calcul
+from main.models.md_calcul import Calcul
 from main.models.md_user import User
-from main.models.md_calcul import calcul
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, jsonify
 from main.app_init.database import db
