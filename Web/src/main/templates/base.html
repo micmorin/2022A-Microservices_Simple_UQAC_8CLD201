@@ -23,11 +23,11 @@
                     <li class="nav-item p-1">
                         <a class="nav-link active" id="home" aria-current="page" href="{{url_for('default.index')}}"> <span class="bi bi-house align-bottom"></span></a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         {% if current_user.is_authenticated and current_user.profil.description == "admin"%}
                         <a class="nav-link" href="{{url_for('users.index')}}">Utilisateurs</a>
                         {% endif %} 
-                    </li>
+                    </li>-->
                     <!-- Begin DropDown -->
                     {% if current_user.is_authenticated %}
                     <ul class="navbar-nav mr-auto me-5 ms-2 mb-md-0">
@@ -37,9 +37,9 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><button class="btn btn-link dropdown-item" data-bs-toggle="modal" data-bs-target="#show_{{current_user.id}}">Voir Profile</button></li>
-                              {% if current_user.profil.description == "admin" %}
+                              <!--{% if current_user.profil.description == "admin" %}
                               <li><a class="dropdown-item" href="{{url_for('admin.index')}}">Gestion Admin</a></li>
-                              {% endif %}
+                              {% endif %}-->
                               <li><a class="dropdown-item" href="{{url_for('default.logout')}}">Logout</a></li>
                             
                             </ul>

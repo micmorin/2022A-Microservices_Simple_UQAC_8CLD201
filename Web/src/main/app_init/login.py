@@ -10,5 +10,5 @@ def init_app(app):
 
     @lm.user_loader
     def load_user(user_id):
-        return User.query.get(user_id)
+        return User.u[0]
     

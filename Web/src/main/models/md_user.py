@@ -1,15 +1,10 @@
 from main.app_init.database import db
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
-    profil_id = db.Column(db.Integer, db.ForeignKey('profil.id'), nullable=False, default=3)
-
-    profil = db.relationship('Profil', backref='profils')
+class User():
+    u = [0]
+    def __init__(self, token):
+        self.token = token
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -24,9 +19,7 @@ class User(db.Model):
         return False          
 
     def get_id(self):         
-        return str(self.id)    
+        return str(self.token)    
 
     def to_json(self):
-        return {"id":self.id,
-                "name":self.name,
-                "email":self.email}
+        return {"token":self.token}
