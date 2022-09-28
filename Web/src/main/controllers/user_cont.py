@@ -1,3 +1,4 @@
+from site import USER_SITE
 from main.models.md_user import User
 from main.models.md_profil import Profil
 from main.models.form_register import RegisterForm
@@ -5,12 +6,25 @@ from flask import render_template, request, redirect, url_for, flash
 from main.app_init.database import db
 from werkzeug.security import generate_password_hash
 from flask_login import current_user, login_user, login_required
+import requests
 
 @login_required
 def index():
-    users = User.query.all()
-    profils = Profil.query.all()
-    return render_template('user_list.html', users=users, profils=profils)
+    requestToDB = requests.get("http://db:5000/users/"+current_user.token) 
+    if requestToDB.status_code == 200:
+        JSONFromrequest = requestToDB.json()
+        users=JSONFromrequest['data']
+        return render_template('user_list.html', users=users)
+    elif requestToDB.status_code == 404:
+        JSONFromrequest = requestToDB.json()
+        flash(JSONFromrequest['message'])
+        return render_template('user_list.html', users="")
+    elif requestToDB.status_code == 503:
+        JSONFromrequest = requestToDB.json()
+        flash(JSONFromrequest['message'])
+        return redirect(url_for("default.index"))
+    else:
+        return redirect(url_for("default.index"))
 
 def create():
     return render_template('user_create.html', form=RegisterForm())

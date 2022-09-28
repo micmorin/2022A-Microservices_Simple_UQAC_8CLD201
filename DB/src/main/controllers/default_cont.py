@@ -11,7 +11,7 @@ def index():
 def login(user, password):
     u = User.query.filter_by(username=user).first()
     if check_password_hash(u.password, password):
-        return jsonify({"message":"Connexion reussie", "token": u.token}), 200
+        return jsonify({"message":"Connexion reussie", "data": u.to_json()}), 200
     else:
         return jsonify({"message":"Identifiants invalides", "db":u.password, "sent":password}), 503
 

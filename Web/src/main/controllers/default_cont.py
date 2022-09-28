@@ -15,10 +15,13 @@ def login():
         requestToDB = requests.get("http://db:5000/login/"+form.username.data+"/"+form.password.data)
         if requestToDB.status_code == 200:
             JSONFromrequest = requestToDB.json()
-            if check_password_hash(JSONFromrequest['token'],'admin'):
-                user = User(token=JSONFromrequest['token'],profil='admin',username=form.username.data)
-            else:
-                user = User(token=JSONFromrequest['token'],profil='user',username=form.username.data)
+            data = JSONFromrequest["data"]
+            user = User(id = data['id'],
+                name = data['name'],
+                username = data['username'],
+                email = data['email'],
+                profil = data['profil'],
+                token = data['token'])
             login_user(user)
             User.u[0] = user
             flash('Connexion reussie')

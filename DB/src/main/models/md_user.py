@@ -30,4 +30,7 @@ class User(db.Model):
     def to_json(self):
         return {"id":self.id,
                 "name":self.name,
-                "email":self.email}
+                "username":self.username,
+                "email":self.email,
+                "profil":self.profil.description,
+                "token":self.token}
