@@ -14,7 +14,7 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div class="container-fluid">
-                <a class="navbar-brand" href="{{url_for('default.index')}}">8CLD202</a>
+                <a class="navbar-brand" href="{{url_for('default.index')}}">8CLD201</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -23,23 +23,23 @@
                     <li class="nav-item p-1">
                         <a class="nav-link active" id="home" aria-current="page" href="{{url_for('default.index')}}"> <span class="bi bi-house align-bottom"></span></a>
                     </li>
-                    <!--<li class="nav-item">
-                        {% if current_user.is_authenticated and current_user.profil.description == "admin"%}
+                    <li class="nav-item">
+                        {% if current_user.is_authenticated and current_user.profil == "admin"%}
                         <a class="nav-link" href="{{url_for('users.index')}}">Utilisateurs</a>
                         {% endif %} 
-                    </li>-->
+                    </li>
                     <!-- Begin DropDown -->
                     {% if current_user.is_authenticated %}
                     <ul class="navbar-nav mr-auto me-5 ms-2 mb-md-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              {{current_user.name}}
+                              {{current_user.username}}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><button class="btn btn-link dropdown-item" data-bs-toggle="modal" data-bs-target="#show_{{current_user.id}}">Voir Profile</button></li>
-                              <!--{% if current_user.profil.description == "admin" %}
-                              <li><a class="dropdown-item" href="{{url_for('admin.index')}}">Gestion Admin</a></li>
-                              {% endif %}-->
+                              {% if current_user.profil == "admin" %}
+                              <li><a class="dropdown-item" href="{{url_for('profil.index')}}">Gestion Profil</a></li>
+                              {% endif %}
                               <li><a class="dropdown-item" href="{{url_for('default.logout')}}">Logout</a></li>
                             
                             </ul>

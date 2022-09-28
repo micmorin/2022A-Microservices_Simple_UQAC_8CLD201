@@ -3,8 +3,10 @@ from main.app_init.database import db
 
 class User():
     u = [0]
-    def __init__(self, token):
+    def __init__(self, token, profil, username):
         self.token = token
+        self.profil = profil
+        self.username = username
 
     def __repr__(self):
         return '<User %r>' % self.username
