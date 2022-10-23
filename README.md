@@ -10,4 +10,4 @@
 ## Membres
 - Isa Herode
 - Jérémy Le Toullec 
-- Michael Munger
+- Michael Morin
