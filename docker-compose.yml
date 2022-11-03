@@ -1,4 +1,6 @@
-version: '1.0'
+version: '3.0'
+
+# - Web - Calcul complexe (calcul) - Envoyer requete BDD (si utili) - Attendre reponse - Envoyer Web
 
 services:
   web:
