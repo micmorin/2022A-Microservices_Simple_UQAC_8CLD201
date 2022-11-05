@@ -18,5 +18,3 @@ services:
     build:
       context: ./DB
       dockerfile: Dockerfile
-    volumes:
-      - ./DB/app/:/app
