@@ -4,6 +4,7 @@ version: '3.0'
 
 services:
   web:
+    container_name: Interface_Web
     #image: ${CI_REGISTRY_IMAGE}:web-v1.0.0
     ports:
       - "80:5000"
@@ -12,6 +13,7 @@ services:
       dockerfile: Dockerfile
 
   db:
+    container_name: Base_de_Donnees
     #image: ${CI_REGISTRY_IMAGE}:db-v1.0.0
     ports:
       - "5000:5000"
@@ -20,6 +22,7 @@ services:
       dockerfile: Dockerfile
 
   complexe:
+    container_name: Calculs_Complexes
     #image: ${CI_REGISTRY_IMAGE}:complexe-v1.0.0
     ports:
       - "5011:5000"
