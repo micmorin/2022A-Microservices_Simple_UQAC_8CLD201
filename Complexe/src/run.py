@@ -16,7 +16,6 @@ def puissance(calcul):
     x = calcul.replace("²", "**2")
     return x
 
-# Lorsque l'on a une racine carré, il faut ajouter une parenthèse ouvrante (WEB) !!!
 def racine(calcul):
     y = calcul.replace("√", "math.sqrt")
     return y
