@@ -1,4 +1,8 @@
-build image:
+stages:
+  - build
+  - deploy
+
+build:
   image: docker
   services:
     - docker:dind
@@ -12,7 +16,7 @@ build image:
   only:
     - main
 
-deploy image:
+deploy:
   image: docker
   services:
     - docker:dind
