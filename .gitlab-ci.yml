@@ -3,6 +3,7 @@ stages:
   - deploy
 
 build:
+  stage: build
   image: docker
   services:
     - docker:dind
@@ -17,6 +18,7 @@ build:
     - main
 
 deploy:
+  stage: deploy
   image: docker
   services:
     - docker:dind
