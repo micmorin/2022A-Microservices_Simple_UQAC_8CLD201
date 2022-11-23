@@ -9,6 +9,9 @@ build image:
     - docker push micmunger/8cld201:web
     - docker build --pull -t micmunger/8cld201:db ./DB
     - docker push micmunger/8cld201:db
+    - docker build --pull -t micmunger/8cld201:complexe ./Complexe
+    - docker push micmunger/8cld201:complexe
+
   only:
     - main
 
