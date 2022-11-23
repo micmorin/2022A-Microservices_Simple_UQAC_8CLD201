@@ -1,9 +1,9 @@
 stages:
-  - build
-#  - deploy
+  - Docker
+#  - AWS
 
-build:
-  stage: build
+Docker:
+  stage: Docker
   image: docker
   services:
     - docker:dind
@@ -20,8 +20,8 @@ build:
   only:
     - main
 
-#deploy:
-#  stage: deploy
+#AWS:
+#  stage: AWS
 #  image: docker
 #  services:
 #    - docker:dind
