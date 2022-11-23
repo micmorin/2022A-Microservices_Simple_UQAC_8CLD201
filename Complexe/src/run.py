@@ -6,7 +6,7 @@ if __name__ == "__main__":
     @app.route("/", methods=['GET'])
     def index():
         data = request.get_json()
-        calcl = data["calc"]
+        #calcl = data["calc"]
 
 
         resultat =0
