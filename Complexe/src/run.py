@@ -5,7 +5,12 @@ if __name__ == "__main__":
 
     @app.route("/")
     def index():
-        return jsonify({"message":"no user found"})
+        data = request.get_json()
+        calcl = data["calc"]
 
 
-    app.run(host='0.0.0.0',port=5000)
+        resultat =0
+        return jsonify({"result":resultat})
+
+
+    app.run(host='0.0.0.0', port=5000)
