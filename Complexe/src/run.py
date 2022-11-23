@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 if __name__ == "__main__":
     app = Flask(__name__)
 
-    @app.route("/")
+    @app.route("/", methods=['GET'])
     def index():
         data = request.get_json()
         calcl = data["calc"]

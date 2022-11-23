@@ -18,3 +18,11 @@ services:
     build:
       context: ./DB
       dockerfile: Dockerfile
+
+  complexe:
+    #image: ${CI_REGISTRY_IMAGE}:complexe-v1.0.0
+    ports:
+      - "5011:5000"
+    build:
+      context: ./Complexe
+      dockerfile: Dockerfile
