@@ -19,7 +19,7 @@ def calcul(calcul):
                     except:
                         pass
     except:
-        result = "Erreur"
+        result = ""
     return result
 
 def puissance(calcul):
