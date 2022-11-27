@@ -43,10 +43,10 @@ if __name__ == "__main__":
         if str_userId == -1:
             return jsonify({"result":"Unauthorized"}), 401
         else:
-            if resultat == "Erreur":
-                return jsonify({"result":"Erreur"}), 400
-            else:
+            if resultat != "":
                 return jsonify({"result":resultat}), 200
+            else:
+                return jsonify({"result":"Calculation failed"}), 400
 
 
     app.run(host='0.0.0.0', port=5000)
