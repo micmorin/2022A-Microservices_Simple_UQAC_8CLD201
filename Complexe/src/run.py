@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     @app.route("/", methods=['POST'])
     def index():
-        return jsonify({"result":"bonjour"}), 200
+        return jsonify({"result":"56"}), 200
         #data = request.get_json()
         data = {"calc": "√(4*5²)²*√(10)"}
         str_cal = data["calc"]

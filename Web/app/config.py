@@ -19,8 +19,9 @@ class DevConfig(Config):
     DEBUG = True
     TESTING = True
 
-class DB():
-    URL='http://db:5000'
+class URL_Helper():
+    DB_URL='http://db:5000'
+    Comp_URL='http://complexe:5000'
 
 
 
