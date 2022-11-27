@@ -23,4 +23,5 @@ profil.route("/delete",                        methods=['DELETE'])         (c.pr
 calcul = Blueprint('calcul', __name__,url_prefix="/calculs")
 
 calcul.route("/",                              methods=['POST'])           (c.calcul_index)
+calcul.route("/add",                           methods=['PUT'])            (c.calcul_create)
 calcul.route("/delete",                        methods=['DELETE'])         (c.calcul_delete)

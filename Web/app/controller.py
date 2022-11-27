@@ -1,16 +1,45 @@
 import requests
 import json
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from models import LoginForm, RegisterForm, User
-from config import DB
+from config import URL_Helper
+import re
 
 ########
 # MAIN #
 ########
 
 def main_index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        if re.findall("[()²√]", request.form['result']):
+            response = requests.post( URL_Helper.Comp_URL, 
+                data=json.dumps( {
+                    "calc":request.form['result'],
+                    "userID":request.form['user']
+                }), 
+                headers={'Content-Type': 'application/json'})
+        else:
+            response = requests.post( URL_Helper.Simple_URL, 
+                data=json.dumps( {
+                    "calc":request.form['result'],
+                    "userID":request.form['user']
+                }), 
+                headers={'Content-Type': 'application/json'})
+            
+
+        #r = requests.put( URL_Helper.DB_URL+"/calculs/add", 
+        #    data=json.dumps( {
+        #        "calc":request.form['result'],
+        #        "userID":request.form['user'],
+        #        "result":response.json()["result"]
+        #    }), 
+        #    headers={'Content-Type': 'application/json'})
+
+        if response.status_code != 200:
+            flash(response.json()["message"])
+        return render_template('index.html', result=response.json()["result"])
+    return render_template('index.html', result="")
 
 def main_login():
     form = LoginForm()
@@ -18,7 +47,7 @@ def main_login():
 # POST Request
     if form.is_submitted():
         response = requests.post(
-            DB.URL+'/login', 
+            URL_Helper.DB_URL+'/login', 
             data=json.dumps( {
                 "username":form.username.data,
                 "password":form.password.data
@@ -66,7 +95,7 @@ def main_logout():
 @login_required
 def user_index():
     if current_user.profil == 'admin':
-        response = requests.get(DB.URL+'/users/')
+        response = requests.get(URL_Helper.DB_URL+'/users/')
         if response.status_code == 200:
             return render_template('user_list.html', users=response.json()['data'])
         else :
@@ -80,7 +109,7 @@ def user_create():
 # POST Request
     if form.is_submitted():
         response = requests.post(
-            DB.URL+'/users/create', 
+            URL_Helper.DB_URL+'/users/create', 
             data=json.dumps( {
                 "name":form.name.data,
                 "username":form.username.data,
@@ -128,7 +157,7 @@ def user_update(user_id):
         password = "?"
         if request.form['password'] != "":
                         password = request.form['password']
-        response = requests.put( DB.URL+'/users/update', 
+        response = requests.put( URL_Helper.DB_URL+'/users/update', 
             data=json.dumps( {
                 "id":user_id,
                 "name":request.form['name'],
@@ -171,7 +200,7 @@ def user_update(user_id):
 @login_required
 def user_destroy(user_id):
     if current_user.profil == "admin":
-        response = requests.delete( DB.URL+'/users/delete', 
+        response = requests.delete( URL_Helper.DB_URL+'/users/delete', 
             data=json.dumps( {
                 "id":user_id
             }), 
@@ -194,7 +223,7 @@ def user_destroy(user_id):
 @login_required
 def profil_index():
     if current_user.profil == 'admin':
-        response = requests.get(DB.URL+'/profils')
+        response = requests.get(URL_Helper.DB_URL+'/profils')
         if response.status_code == 200:
             return render_template('profil_list.html', profils=response.json()['data'])
         else :
@@ -204,7 +233,7 @@ def profil_index():
 @login_required
 def profil_create():
     if current_user.profil == "admin":
-        response = requests.post( DB.URL+'/profils/create', 
+        response = requests.post( URL_Helper.DB_URL+'/profils/create', 
             data=json.dumps( {
                 "description":request.form['description']
             }), 
@@ -225,7 +254,7 @@ def profil_create():
 @login_required
 def profil_update(profil_id):
     if  current_user.profil == "admin":
-        response = requests.put( DB.URL+'/profils/update', 
+        response = requests.put( URL_Helper.DB_URL+'/profils/update', 
             data=json.dumps( {
                 "id":profil_id,
                 "description":request.form['description']
@@ -249,7 +278,7 @@ def profil_update(profil_id):
 @login_required
 def profil_destroy(profil_id):
     if current_user.profil == "admin":
-        response = requests.delete( DB.URL+'/profils/delete', 
+        response = requests.delete( URL_Helper.DB_URL+'/profils/delete', 
             data=json.dumps( {
                 "id":profil_id
             }), 
@@ -272,7 +301,7 @@ def profil_destroy(profil_id):
 ##########
 @login_required
 def calcul_index():
-    response = requests.post( DB.URL+'/calculs/', 
+    response = requests.post( URL_Helper.DB_URL+'/calculs/', 
             data=json.dumps( {
                 "user_id":current_user.id
             }), 
@@ -284,9 +313,15 @@ def calcul_index():
         flash(response.json()['message'])
         return redirect(url_for('main.main_index'))
 
+def calcul_send():
+    res = requests.post( 'http://complexe:5000/', 
+            data=request.get_json(), 
+            headers={'Content-Type': 'application/json'})
+    return {"resultat": "youpi"}, 200
+
 @login_required
 def calcul_destroy(calcul_id):
-    response = requests.delete( DB.URL+'/calculs/delete', 
+    response = requests.delete( URL_Helper.DB_URL+'/calculs/delete', 
         data=json.dumps( {
             "user_id":current_user.id,
             "id":calcul_id

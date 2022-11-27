@@ -19,8 +19,10 @@ class DevConfig(Config):
     DEBUG = True
     TESTING = True
 
-class DB():
-    URL='http://db:5000'
+class URL_Helper():
+    DB_URL='http://db:5000'
+    Comp_URL='http://complexe:5000'
+    Simple_URL='https://xwwt2jr2yj.execute-api.us-east-1.amazonaws.com/default/test'
 
 
 

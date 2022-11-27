@@ -3,6 +3,7 @@ from models import User, Profil, Calcul
 from flask import jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from database_init import db
+from datetime import datetime
 
 ########
 # MAIN #
@@ -135,6 +136,27 @@ def calcul_index():
         for c in calculs:
             calculs_obj.append(c.to_json())
         return jsonify({"message":"ok", "data": calculs_obj}), 200
+
+def calcul_create():
+    data = request.get_json()
+    try:
+        user = User.query.filter_by(id=data["userID"]).first()
+        print(user.id)
+    except:
+        return jsonify({"message":'Un probleme est survenu. L\'utilisateur n\'existe pas. '}), 401   
+    try:
+        new_calcul = Calcul(
+            body=data['calc'], 
+            result=data['result'],
+            date=datetime.today(),
+            user=user
+            )
+        db.session.add(new_calcul)
+        db.session.commit()
+        return jsonify({"message":'Calcul enregistre!'}), 200
+    except:
+        return jsonify({"message":'Un probleme est survenu. Le calcul existe peut etre deja. '}), 400
+
 
 def calcul_delete():
     data = request.get_json()

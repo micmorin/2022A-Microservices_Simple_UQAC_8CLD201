@@ -3,7 +3,7 @@ import controller as c
 
 main = Blueprint('main',__name__, url_prefix="/")
 
-main.route("/",                                 methods=['GET'])            (c.main_index)
+main.route("/",                                 methods=['GET', 'POST'])    (c.main_index)
 main.route("/login",                            methods=['GET', 'POST'])    (c.main_login)
 main.route("/logout",                           methods=['GET'])            (c.main_logout)
 
@@ -24,4 +24,5 @@ profil.route('/<int:profil_id>',                methods=['POST'])           (c.p
 calcul = Blueprint('calcul', __name__,url_prefix="/calculs")
 
 calcul.route('/',                               methods=['GET'])            (c.calcul_index)
+calcul.route('/send',                           methods=['POST'])           (c.calcul_send)
 calcul.route('/<int:calcul_id>',                methods=['POST'])           (c.calcul_destroy)

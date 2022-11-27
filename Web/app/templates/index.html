@@ -19,11 +19,19 @@
 </div>
 
 <table class="calculator" >
+  <form action="/" method="post" >
     <tr>
-      <td colspan="3"> <input class="display-box" type="text" id="result" disabled /> </td>
+      <td colspan="3"> <input class="display-box" type="text" id="result" name="result" value="{{result}}" readonly /> </td>
       <!-- backSpace() function clears the last value -->
       <td> <input type="button" value="<<" onclick="backSpace()" id="btn-2" /> </td>
     </tr>
+    <tr>
+      <td> <input type="button" value="(" onclick="display('&#40')" id="btn-1"/> </td>
+      <td> <input type="button" value=")" onclick="display('&#41')" id="btn-1"/> </td>
+      <td> <input type="button" value="²" onclick="display('²')" id="btn-1"/> </td>
+      <td> <input type="button" value="√" onclick="display('√\(')" id="btn-1" /> </td>
+    </tr>
+
     <tr>
       <!-- display() function displays the value of clicked button -->
       <td> <input type="button" value="1" onclick="display('1')" /> </td>
@@ -52,8 +60,16 @@
       <!-- clearScreen() function clears all the values -->
       <td colspan = "2"> <input type="button" value="C" onclick="clearScreen()" id="btn-2" /> </td>
       <!-- calculate() function evaluates the mathematical expression -->
-      <td colspan = "2"> <input type="button" value="=" onclick="calculate()" id="btn-1" /> </td>
-    </tr>
+      <td colspan = "2">
+         <input type="submit" value="=" id="btn-1" /> 
+         {% if current_user.is_authenticated %}
+          <input type="hidden" value="{{current_user.id}}" id="user" name="user"/> 
+        {% else %}
+          <input type="hidden" value="-1" id="user" name="user"/> 
+        {% endif %}
+        </td>
+      </tr>
+    </form>
   </table>
    
   <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>

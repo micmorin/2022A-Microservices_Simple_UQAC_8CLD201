@@ -11,6 +11,8 @@ services:
     build:
       context: ./Web
       dockerfile: Dockerfile
+      tags:
+        - "micmunger/8cld201:web"
 
   db:
     container_name: Base_de_Donnees
@@ -20,6 +22,8 @@ services:
     build:
       context: ./DB
       dockerfile: Dockerfile
+      tags:
+        - "micmunger/8cld201:db"
 
   complexe:
     container_name: Calculs_Complexes
@@ -29,3 +33,5 @@ services:
     build:
       context: ./Complexe
       dockerfile: Dockerfile
+      tags:
+        - "micmunger/8cld201:complexe"
