@@ -1,5 +1,5 @@
 import json
-import requests
+#import requests
 
 def calcul(calcul):
     try:
@@ -37,6 +37,8 @@ def returnBuilder(body, status):
 
 def lambda_handler(event, context):
 
-    str_cal = event["calc"]
-    resultat = calcul(str_cal)
-    return json.dumps({"result":resultat})
+    body = json.loads(event["body"])
+    userID = body["userID"]
+    calc = body["calc"]
+    [body, status] = store(userID, calc)
+    return returnBuilder(body, status)
