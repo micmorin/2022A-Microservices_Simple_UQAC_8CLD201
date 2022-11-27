@@ -66,6 +66,17 @@ input[type=button] {
     height: 90%;
     outline: none;
 }
+input[type=submit]{
+    font-family: 'Orbitron', sans-serif;
+    background-color: #303036;
+    color: white;
+    border: solid black 0.5px;
+    width: 100%;
+    border-radius: 10px;
+    height: 90%;
+    outline: none;
+}
+
 input:active[type=button] {
     background: #e5e5e5;
     -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;

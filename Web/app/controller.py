@@ -10,7 +10,9 @@ from config import DB
 ########
 
 def main_index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        return render_template('index.html', result="1")
+    return render_template('index.html', result="")
 
 def main_login():
     form = LoginForm()
