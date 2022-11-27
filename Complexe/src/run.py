@@ -23,8 +23,9 @@ def racine(calcul):
 if __name__ == "__main__":
     app = Flask(__name__)
 
-    @app.route("/", methods=['GET'])
+    @app.route("/", methods=['POST'])
     def index():
+        return jsonify({"result":"bonjour"}), 200
         print("index")
         #data = request.get_json()
         data = {"calc": "√(4*5²)²*√(9)"}

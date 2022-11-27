@@ -24,4 +24,5 @@ profil.route('/<int:profil_id>',                methods=['POST'])           (c.p
 calcul = Blueprint('calcul', __name__,url_prefix="/calculs")
 
 calcul.route('/',                               methods=['GET'])            (c.calcul_index)
+calcul.route('/send',                           methods=['POST'])           (c.calcul_send)
 calcul.route('/<int:calcul_id>',                methods=['POST'])           (c.calcul_destroy)

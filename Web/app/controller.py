@@ -1,6 +1,6 @@
 import requests
 import json
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from models import LoginForm, RegisterForm, User
 from config import DB
@@ -283,6 +283,12 @@ def calcul_index():
     else :
         flash(response.json()['message'])
         return redirect(url_for('main.main_index'))
+
+def calcul_send():
+    res = requests.post( 'http://complexe:5000/', 
+            data=request.get_json(), 
+            headers={'Content-Type': 'application/json'})
+    return {"resultat": "youpi"}, 200
 
 @login_required
 def calcul_destroy(calcul_id):
