@@ -4,6 +4,7 @@ from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from models import LoginForm, RegisterForm, User
 from config import URL_Helper
+import re
 
 ########
 # MAIN #
@@ -11,12 +12,21 @@ from config import URL_Helper
 
 def main_index():
     if request.method == 'POST':
-        response = requests.post( URL_Helper.Comp_URL, 
-            data=json.dumps( {
-                "calc":request.form['result'],
-                "userID":request.form['user']
-            }), 
-            headers={'Content-Type': 'application/json'})
+        if re.findall("[()²√]", request.form['result']):
+            response = requests.post( URL_Helper.Comp_URL, 
+                data=json.dumps( {
+                    "calc":request.form['result'],
+                    "userID":request.form['user']
+                }), 
+                headers={'Content-Type': 'application/json'})
+        else:
+            response = requests.post( URL_Helper.Simple_URL, 
+                data=json.dumps( {
+                    "calc":request.form['result'],
+                    "userID":request.form['user']
+                }), 
+                headers={'Content-Type': 'application/json'})
+            
 
         #r = requests.put( URL_Helper.DB_URL+"/calculs/add", 
         #    data=json.dumps( {
