@@ -35,18 +35,11 @@ if __name__ == "__main__":
 
     @app.route("/", methods=['POST'])
     def index():
+        return jsonify({"result":"56"}), 200
         #data = request.get_json()
         data = {"calc": "√(4*5²)²*√(10)"}
-        str_userId = data["userID"]
         str_cal = data["calc"]
         resultat = calcul(str_cal)
-
-        if str_userId == -1:
-            return jsonify({"result":"Unauthorized"}), 401
-        else:
-            if resultat == "Erreur":
-                return jsonify({"result":"Erreur"}), 400
-            else:
-                return jsonify({"result":resultat}), 200
+        return jsonify({"result":resultat})
 
     app.run(host='0.0.0.0', port=5000)
