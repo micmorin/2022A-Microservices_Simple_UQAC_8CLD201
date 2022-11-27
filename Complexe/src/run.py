@@ -35,8 +35,7 @@ if __name__ == "__main__":
 
     @app.route("/", methods=['POST'])
     def index():
-        #data = request.get_json()
-        data = {"calc": "√(4*5²)²*√(10)"}
+        data = request.get_json()
         str_userId = data["userID"]
         str_cal = data["calc"]
         resultat = calcul(str_cal)
