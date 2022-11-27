@@ -1,9 +1,14 @@
+import json
+
 def calcul(calcul):
-    #Fonction qui calcule le résultat d'un calcul simple
-    result = eval(str(calcul))
+    try:
+        result = eval(str(calcul))
+    except:
+        result = "Erreur"
     return result
 
-# demande à l'utilisateur de saisir un calcul et affiche le résultat
-if __name__ == "__main__":
-    enter = input("Entrez un calcul : ")
-    print(calcul(enter))
+def lambda_handler(event, context):
+
+    str_cal = event["calc"]
+    resultat = calcul(str_cal)
+    return json.dumps({"result":resultat})
