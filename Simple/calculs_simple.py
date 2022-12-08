@@ -1,5 +1,5 @@
 import json
-#import requests
+import requests
 
 def calcul(calcul):
     try:
@@ -15,6 +15,7 @@ def store(userID, calc):
             
             #### USE REQUESTS to send to DB and Act on response code HERE #####
             
+
             
             body = "{\"message\":\"OK\", \"result\":"+resultat+"}"
             status = 200
