@@ -50,6 +50,9 @@ main > .container {
     width: 100%;
     height: 88%;
 }
+.navbar-collapse {
+    flex-grow: 0;
+}
 #btn-1 {
     background-color: #b27092;
 }

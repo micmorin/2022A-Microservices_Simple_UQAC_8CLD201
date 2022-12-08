@@ -28,7 +28,7 @@
         <th scope="col" style="width:10%">#</th>
         <th scope="col" style="width:15%">Nom</th>
         <th scope="col" style="width:30%">Email</th>
-        <th scope="col" style="width:15%">Role</th>
+        <th scope="col" style="width:15%">Rôle</th>
         <th scope="col" style="width:30%">Action</th>
       </tr>
     </thead>
@@ -54,11 +54,11 @@
                 </div>
                 <div class="modal-body">
                         <div class="row">
-                        <div class="col-6 my-1 text-align-center">Nom:</div>
+                        <div class="col-6 my-1 text-align-center">Nom :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="name" name="name" value="{{user.name}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Nom d'utilisateur:</div>
+                        <div class="col-6 my-1 text-align-center"> Nom d'utilisateur :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="username" name="username" value="{{user.username}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Addresse courriel:</div>
+                        <div class="col-6 my-1 text-align-center"> Addresse courriel :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="email" name="email" value="{{user.email}}"></div>
                 </div>
                 <div class="modal-footer">
@@ -78,18 +78,18 @@
                 <div class="modal-body">
                     <form action="{{url_for('user.user_update',user_id=user.id)}}" method="post" id="form_{{user.id}}">
                         <div class="row">
-                        <div class="col-6 my-1 text-align-center">Nom:</div>
+                        <div class="col-6 my-1 text-align-center">Nom :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="name" name="name" value="{{user.name}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Nom d'utilisateur:</div>
+                        <div class="col-6 my-1 text-align-center"> Nom d'utilisateur :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="username" name="username" value="{{user.username}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Adresse courriel:</div>
+                        <div class="col-6 my-1 text-align-center"> Adresse courriel :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="email" name="email" value="{{user.email}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Mot de passe:</div>
+                        <div class="col-6 my-1 text-align-center"> Mot de passe :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="password" id="password" name="password"></div>
-                        <div class="col-6 my-1 text-align-center"> Profil:</div>
+                        <div class="col-6 my-1 text-align-center"> Profil :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> 
                           <select name="profil" id="profil">
-             <!--value should be based on profil-->               <option value="1" selected disabled hidden>Selectionner</option>
+             <!--value should be based on profil-->               <option value="1" selected disabled hidden>Sélectionner</option>
                               <option value="0">admin</option>
                               <option value="1">user</option>
                         </select></div>
