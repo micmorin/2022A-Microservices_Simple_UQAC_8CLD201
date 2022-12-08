@@ -36,7 +36,6 @@ def returnBuilder(body, status):
     
 
 def lambda_handler(event, context):
-
     body = json.loads(event["body"])
     userID = body["userID"]
     calc = body["calc"]

@@ -10,15 +10,15 @@ from datetime import datetime
 ########
 
 def main_index():
-    return jsonify({"message":"Veuillez consulter la documentation de l'API"}), 404
+    return jsonify({"message":"Veuillez consulter la documentation de l'API."}), 404
 
 def main_login():
     data = request.get_json()
     u = User.query.filter_by(username=data["username"]).first()
     if check_password_hash(u.password, data["password"]):
-        return jsonify({"message":"Connexion reussie", "data": u.to_json()}), 200
+        return jsonify({"message":"Connexion reussie.", "data": u.to_json()}), 200
     else:
-        return jsonify({"message":"Identifiants invalides"}), 503
+        return jsonify({"message":"Identifiants invalides."}), 503
 
 ########
 # User #
@@ -27,7 +27,7 @@ def main_login():
 def user_index():
     users = User.query.all()
     if users is Empty:
-        return jsonify({"message":"no user found"}), 404
+        return jsonify({"message":"Pas d'utilisateur trouve."}), 404
     else:
         users_obj = []
         for u in users:
@@ -49,7 +49,7 @@ def user_create():
         db.session.commit()
         return jsonify({"message":'Utilisateur enregistre!', "token": new_user.token, "id":new_user.id}), 200
     except:
-        return jsonify({"message":'Un probleme est survenu. Le nom d\'utilisateur existe peut etre deja. '}), 400
+        return jsonify({"message":'Un probleme est survenu. Le nom d\'utilisateur existe peut-etre deja. '}), 400
 
 def user_update():
     data = request.get_json()
@@ -62,7 +62,7 @@ def user_update():
             user.password = data['password']
         #user.profil_id =data['profilID']
         db.session.commit()
-        return jsonify({"message":"L'utilisateur " + user.username + " a ete mis a jour"}), 200
+        return jsonify({"message":"L'utilisateur " + user.username + " a ete mis a jour."}), 200
     except:
         return jsonify({"message":'Un probleme est survenu.'}), 400     
 
@@ -83,7 +83,7 @@ def user_delete():
 def profil_index():
     profils = Profil.query.all()
     if profils is Empty:
-        return jsonify({"message":"no profil found"}), 404
+        return jsonify({"message":"Pas de profil trouve."}), 404
     else:
         profils_obj = []
         for p in profils:
@@ -100,7 +100,7 @@ def profil_create():
         db.session.commit()
         return jsonify({"message":'Profil enregistre!'}), 200
     except:
-        return jsonify({"message":'Un probleme est survenu. Le profil existe peut etre deja. '}), 400
+        return jsonify({"message":'Un probleme est survenu. Le profil existe peut-etre deja. '}), 400
 
 def profil_update():
     data = request.get_json()
@@ -130,7 +130,7 @@ def calcul_index():
     data = request.get_json()
     calculs = Calcul.query.filter_by(user_id=data["user_id"]).all()
     if calculs is Empty:
-        return jsonify({"message":"no calculs found"}), 404
+        return jsonify({"message":"Pas de calcul trouve."}), 404
     else:
         calculs_obj = []
         for c in calculs:
@@ -155,7 +155,7 @@ def calcul_create():
         db.session.commit()
         return jsonify({"message":'Calcul enregistre!'}), 200
     except:
-        return jsonify({"message":'Un probleme est survenu. Le calcul existe peut etre deja. '}), 400
+        return jsonify({"message":'Un probleme est survenu. Le calcul existe peut-etre deja. '}), 400
 
 
 def calcul_delete():
@@ -167,6 +167,6 @@ def calcul_delete():
             db.session.commit()
             return jsonify({"message":"Le profil a ete supprime!"}), 200
         else:
-           return jsonify({"message":'Acces Interdit.'}), 501  
+           return jsonify({"message":'Acces interdit.'}), 501  
     except:
         return jsonify({"message":'Un probleme est survenu.'}), 400   

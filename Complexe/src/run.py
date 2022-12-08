@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+import requests
+from requests.structures import CaseInsensitiveDict
 import math
 
 def calcul(calcul):
@@ -40,13 +42,18 @@ if __name__ == "__main__":
         str_cal = data["calc"]
         resultat = calcul(str_cal)
 
-        if str_userId == -1:
-            return jsonify({"result":"Unauthorized"}), 401
-        else:
-            if resultat != "":
-                return jsonify({"result":resultat}), 200
-            else:
-                return jsonify({"result":"Calculation failed"}), 400
+        if resultat != "":
+            if str_userId != "-1":
+                url = "http://db:5000/calculs/add"
+                data = {"userID":str_userId, "calc":str_cal, "result":resultat}
 
+                headers = CaseInsensitiveDict()
+                headers["Content-Type"] = "application/json"
+
+                response = requests.put(url, headers=headers, json=data)
+                print(response.status_code)
+            return jsonify({"result":resultat}), 200
+        else:
+            return jsonify({"result":"Calculation failed"}), 400
 
     app.run(host='0.0.0.0', port=5000)
