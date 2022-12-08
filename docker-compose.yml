@@ -7,7 +7,7 @@ services:
     container_name: Interface_Web
     #image: ${CI_REGISTRY_IMAGE}:web-v1.0.0
     ports:
-      - "80:5000"
+      - "81:5000"
     build:
       context: ./Web
       dockerfile: Dockerfile

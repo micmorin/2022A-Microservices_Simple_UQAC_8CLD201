@@ -52,10 +52,8 @@ if __name__ == "__main__":
 
                 response = requests.put(url, headers=headers, json=data)
                 print(response.status_code)
-
             return jsonify({"result":resultat}), 200
         else:
             return jsonify({"result":"Calculation failed"}), 400
-
 
     app.run(host='0.0.0.0', port=5000)

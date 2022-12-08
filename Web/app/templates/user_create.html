@@ -8,7 +8,7 @@
         <div class="card text-center">
             <div class="card-header">
                 {% if current_user.is_authenticated and current_user.profil.description == "admin"%}
-                <h1 class="card-title">Nouvel Utilisateur</h1>
+                <h1 class="card-title">Nouvel utilisateur</h1>
                 {% else %}
                 <h1 class="card-title">Enregistrement</h1>
                 {% endif %}
@@ -21,7 +21,7 @@
                         <div class="col-6 my-1 p-0 text-align-center"> {{form.name}}</div>
                         <div class="col-6 my-1 text-align-center"> Nom d'utilisateur:</div>
                         <div class="col-6 my-1 p-0 text-align-center"> {{form.username}}</div>
-                        <div class="col-6 my-1 text-align-center"> Addresse courriel:</div>
+                        <div class="col-6 my-1 text-align-center"> Adresse courriel:</div>
                         <div class="col-6 my-1 p-0 text-align-center"> {{form.email}}</div>
                         <div class="col-6 my-1 text-align-center"> Mot de passe:</div>
                         <div class="col-6 my-1 p-0 text-align-center"> {{form.password}}</div>
