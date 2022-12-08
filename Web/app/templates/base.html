@@ -47,7 +47,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><button class="btn btn-link dropdown-item" data-bs-toggle="modal" data-bs-target="#show_{{current_user.id}}">Voir profil</button></li>
                                     {% if current_user.profil == "admin" %}
-                                    <li><a class="dropdown-item" href="{{ url_for('profil.profil_index') }}">Gestion profil</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('profil.profil_index') }}">Gestion rôles</a></li>
                                     {% endif %}
                                     <li><a class="dropdown-item" href="{{ url_for('main.main_logout') }}">Déconnexion</a></li>
                                     
