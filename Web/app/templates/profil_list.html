@@ -11,29 +11,29 @@
 
 <div class="row">
     <div class="col">
-        <h3 class="mt-5">Gestion profils</h3>
+        <h3 class="mt-5">Gestion des rôles</h3>
     </div>
     <div class="col mt-5 text-end">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create_profile">Créer un nouveau profil</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create_profile">Créer un nouveau rôle</button>
     </div>
 </div>
 <div class="modal fade" id="create_profile" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Creation d'un profil</h5>
+          <h5 class="modal-title">Création d'un rôle</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form action="{{url_for('profil.profil_create')}}" method="POST" id="form_create_profile">
                 <div class="row">
-                <div class="col-3 my-1 text-align-center">Description:</div>
+                <div class="col-3 my-1 text-align-center">Description :</div>
                 <div class="col-9 my-1 p-0 text-align-center"> <input type="text" id="description" name="description" style="width:90%"></div>
             </div>
         </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button type="submit" class="btn btn-primary" form="form_create_profile">Creer</button>
+          <button type="submit" class="btn btn-primary" form="form_create_profile">Créer</button>
         </div>
       </div>
     </div>
@@ -64,13 +64,13 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Modification d'un profil</h5>
+                <h5 class="modal-title">Modification d'un rôle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                   <form action="{{url_for('profil.profil_update',profil_id=profil.id)}}" method="post" id="form_updateProfil_{{profil.id}}">
                       <div class="row">
-                          <div class="col-3 my-1 text-align-center">Description:</div>
+                          <div class="col-3 my-1 text-align-center">Description :</div>
                           <div class="col-9 my-1 p-0 text-align-center"> <input type="text" id="description" name="description" style="width:90%" value="{{profil.description}}"></div>
                   </div>
                   </form>
@@ -86,11 +86,11 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Supression d'un profil</h5>
+                <h5 class="modal-title">Supression d'un rôle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <p>Etes-vous sur?</p>
+                  <p>Êtes-vous sûr ?</p>
                   <form action="{{url_for('profil.profil_destroy',profil_id=profil.id)}}" method="post" id="form_deleteProfil_{{profil.id}}">
                       <input type="hidden" id="commID" name="commID" value="{{profil.id}}">
                       </form>

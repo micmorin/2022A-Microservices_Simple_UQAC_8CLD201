@@ -47,7 +47,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><button class="btn btn-link dropdown-item" data-bs-toggle="modal" data-bs-target="#show_{{current_user.id}}">Voir profil</button></li>
                                     {% if current_user.profil == "admin" %}
-                                    <li><a class="dropdown-item" href="{{ url_for('profil.profil_index') }}">Gestion profil</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('profil.profil_index') }}">Gestion rôles</a></li>
                                     {% endif %}
                                     <li><a class="dropdown-item" href="{{ url_for('main.main_logout') }}">Déconnexion</a></li>
                                     
@@ -57,7 +57,7 @@
 
                         {% else %}
                             <ul class="navbar-nav mr-auto me-5 ms-2 mb-md-0">
-                                <li class="nav-item"><a class="nav-link" href="#">S'enregistrer</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url_for('user.user_create') }}">S'enregistrer</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url_for('main.main_login') }}">Connexion</a></li>
                                 
                                     </ul>
@@ -100,11 +100,11 @@
                 </div>
                 <div class="modal-body">
                         <div class="row">
-                        <div class="col-6 my-1 text-align-center">Nom:</div>
+                        <div class="col-6 my-1 text-align-center">Nom :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="name" name="name" value="{{current_user.name}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Nom d'utilisateur:</div>
+                        <div class="col-6 my-1 text-align-center"> Nom d'utilisateur :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="username" name="username" value="{{current_user.username}}"></div>
-                        <div class="col-6 my-1 text-align-center"> Adresse courriel:</div>
+                        <div class="col-6 my-1 text-align-center"> Adresse courriel :</div>
                         <div class="col-6 my-1 p-0 text-align-center"> <input type="text" id="email" name="email" value="{{current_user.email}}"></div>
                 </div>
                 <div class="modal-footer">
