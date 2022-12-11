@@ -1,7 +1,5 @@
 version: '3.0'
 
-# - Web - Calcul complexe (calcul) - Envoyer requete BDD (si utili) - Attendre reponse - Envoyer Web
-
 services:
   web:
     container_name: Interface_Web
@@ -16,7 +14,7 @@ services:
   db:
     container_name: Base_de_Donnees
     ports:
-      - "5000:5000"
+     - "5000:5000"
     build:
       context: ./DB
       dockerfile: Dockerfile

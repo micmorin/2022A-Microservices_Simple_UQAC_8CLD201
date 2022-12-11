@@ -1,6 +1,16 @@
+variables:
+  DOCKER_REGISTERY1: 079666029370.dkr.ecr.us-east-2.amazonaws.com/calculator_web
+  DOCKER_REGISTERY2: 079666029370.dkr.ecr.us-east-2.amazonaws.com/calculator_db
+  DOCKER_REGISTERY3: 079666029370.dkr.ecr.us-east-2.amazonaws.com/calculator_complexe
+  APP_NAME1: 8cld201:web
+  APP_NAME2: 8cld201:db
+  APP_NAME3: 8cld201:complexe
+  AWS_DEFAULT_REGION: us-east-2
+  DOCKER_HOST: tcp://docker:2375
+
 stages:
   - Docker
-#  - AWS
+  - AWS
 
 Docker:
   stage: Docker
@@ -20,14 +30,25 @@ Docker:
   only:
     - main
 
-#AWS:
-#  stage: AWS
-#  image: docker
-#  services:
-#    - docker:dind
-#  before_script:
-#  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-#  script:
-    
-#  only:
-#    - main
+AWS:
+  stage: AWS
+  image: amazon/aws-cli
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - docker build -t $DOCKER_REGISTERY1/$APP_NAME1:$CI_PIPELINE_IID
+    - docker build -t $DOCKER_REGISTERY2/$APP_NAME2:$CI_PIPELINE_IID
+    - docker build -t $DOCKER_REGISTERY3/$APP_NAME3:$CI_PIPELINE_IID
+    - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $DOCKER_REGISTERY1
+    - docker push $DOCKER_REGISTERY1/$APP_NAME1:$CI_PIPELINE_IID
+    - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $DOCKER_REGISTERY2
+    - docker push $DOCKER_REGISTERY2/$APP_NAME2:$CI_PIPELINE_IID
+    - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $DOCKER_REGISTERY3
+    - docker push $DOCKER_REGISTERY3/$APP_NAME3:$CI_PIPELINE_IID
+
+  only:
+    - main
