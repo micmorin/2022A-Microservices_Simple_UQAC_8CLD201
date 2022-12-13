@@ -38,9 +38,9 @@ AWS:
   before_script:
     - amazon-linux-extras install docker
   script:
-    - docker build -t $DOCKER_REGISTERY1/$APP_NAME1:$CI_PIPELINE_IID
-    - docker build -t $DOCKER_REGISTERY2/$APP_NAME2:$CI_PIPELINE_IID
-    - docker build -t $DOCKER_REGISTERY3/$APP_NAME3:$CI_PIPELINE_IID
+    - docker build -t $DOCKER_REGISTERY1/$APP_NAME1
+    - docker build -t $DOCKER_REGISTERY2/$APP_NAME2
+    - docker build -t $DOCKER_REGISTERY3/$APP_NAME3
     - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $DOCKER_REGISTERY1
     - docker push $DOCKER_REGISTERY1/$APP_NAME1:$CI_PIPELINE_IID
     - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $DOCKER_REGISTERY2
