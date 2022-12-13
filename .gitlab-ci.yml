@@ -32,9 +32,9 @@ Docker:
 
 AWS:
   stage: AWS
-  image: amazon/aws-cli
-  services:
-    - docker:dind
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
   before_script:
     - amazon-linux-extras install docker
   script:
