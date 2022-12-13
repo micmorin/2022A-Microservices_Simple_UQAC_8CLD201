@@ -37,8 +37,6 @@ AWS:
     - docker:dind
   before_script:
     - amazon-linux-extras install docker
-    - aws --version
-    - docker --version
   script:
     - docker build -t $DOCKER_REGISTERY1/$APP_NAME1:$CI_PIPELINE_IID
     - docker build -t $DOCKER_REGISTERY2/$APP_NAME2:$CI_PIPELINE_IID
